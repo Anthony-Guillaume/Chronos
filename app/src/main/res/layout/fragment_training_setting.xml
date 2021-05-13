@@ -34,6 +34,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="20"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:lines="2"
         android:maxLines="2"
-        android:text="Warmup 00:00d"
+        android:text="Warmup 00:00"
         tools:layout_editor_absoluteX="156dp"
         tools:layout_editor_absoluteY="102dp" />
 
