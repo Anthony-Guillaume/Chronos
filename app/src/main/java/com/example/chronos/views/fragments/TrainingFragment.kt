@@ -1,15 +1,12 @@
 package com.example.chronos.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.chronos.R
-import com.example.chronos.data.models.Circuit
-import com.example.chronos.data.models.State
 import com.example.chronos.databinding.FragmentTrainingBinding
 import com.example.chronos.viewModels.CircuitViewModel
 import com.example.chronos.viewModels.ViewModelProvider
@@ -44,9 +41,6 @@ class TrainingFragment : Fragment(R.layout.fragment_training)
     {
         viewModel.state.observe(viewLifecycleOwner) {
             binding.textViewState.text = it.toString()
-            var log = it.toString()
-            if (it == State.SetResting) log += "**********"
-            Log.i("TAGTEST", log)
         }
         viewModel.time.observe(viewLifecycleOwner) {
             binding.textViewTime.text = DurationHelper.format(it)

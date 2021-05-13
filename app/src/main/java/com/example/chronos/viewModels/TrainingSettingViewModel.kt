@@ -13,9 +13,9 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
 {
     private var circuitToSave: Circuit? = null
     private val _circuit: MutableLiveData<Circuit> = MutableLiveData(
-        Circuit("", 0, 0,
-            Exercise(0, 0, 0),
-        0))
+        Circuit("", 10000, 10000,
+            Exercise(10000, 10000, 5),
+        5))
     val circuit get() = _circuit as LiveData<Circuit>
 
     private fun notifyDataChanged()

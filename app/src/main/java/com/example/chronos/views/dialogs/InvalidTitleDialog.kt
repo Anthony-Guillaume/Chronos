@@ -9,6 +9,9 @@ import com.example.chronos.databinding.DialogInvalidTitleBinding
 
 class InvalidTitleDialog : DialogFragment()
 {
+    companion object {
+        const val TAG: String = "InvalidTitleDialog"
+    }
     private var _binding: DialogInvalidTitleBinding? = null
     private val binding get() = _binding!!
 

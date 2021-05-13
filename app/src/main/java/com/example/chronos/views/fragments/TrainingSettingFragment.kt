@@ -43,8 +43,8 @@ class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
     private fun observeViewModel()
     {
         viewModel.circuit.observe(viewLifecycleOwner) {
-            binding.textViewRoundNumber.text = getString(R.string.number_of_round_text_view, it.exercise.numberOfRound)
-            binding.textViewSetNumber.text = getString(R.string.number_of_set_text_view, it.numberOfSet)
+            binding.textViewRoundNumber.text = getString(R.string.number_of_rounds_text_view, it.exercise.numberOfRound)
+            binding.textViewSetNumber.text = getString(R.string.number_of_sets_text_view, it.numberOfSet)
             binding.textViewWarmup.text = getString(R.string.warmup_text_view, DurationHelper.format(it.warmup))
             binding.textViewWorkout.text = getString(R.string.workout_text_view, DurationHelper.format(it.exercise.workout))
             binding.textViewExerciceRest.text = getString(R.string.exercise_rest_text_view, DurationHelper.format(it.exercise.rest))

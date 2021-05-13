@@ -67,7 +67,7 @@ class CircuitHandler(
     {
         paused = false
         circuitTimer.stop()
-        time.value = 0
+        time.value = circuit.warmup
         timeCache = 0
         circuitStateHandler.init()
     }

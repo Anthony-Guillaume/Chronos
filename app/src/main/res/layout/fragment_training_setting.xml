@@ -9,18 +9,16 @@
         android:id="@+id/button_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        android:text="@string/save"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="615dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_back"
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/back"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="616dp" />
 
@@ -28,7 +26,7 @@
         android:id="@+id/text_field_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="@string/circuit_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="281dp"
-        tools:layout_editor_absoluteY="411dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="99dp" />
 
     <TextView
         android:id="@+id/text_view_warmup"
@@ -55,136 +53,136 @@
         android:lines="2"
         android:maxLines="2"
         android:text="Warmup 00:00d"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="423dp" />
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="102dp" />
 
     <ImageButton
         android:id="@+id/button_warmup_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="263dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="99dp" />
 
     <ImageButton
         android:id="@+id/button_workout_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="220dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="185dp" />
 
     <TextView
         android:id="@+id/text_view_workout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Workout 00:00"
-        tools:layout_editor_absoluteX="263dp"
-        tools:layout_editor_absoluteY="306dp" />
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="197dp" />
 
     <ImageButton
         android:id="@+id/button_workout_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="263dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="185dp" />
 
     <ImageButton
         android:id="@+id/button_exercice_rest_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="271dp" />
 
     <TextView
         android:id="@+id/text_view_exercice_rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise rest 00:00"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="306dp" />
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="283dp" />
 
     <ImageButton
         android:id="@+id/button_exercice_rest_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="220dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="271dp" />
 
     <ImageButton
         android:id="@+id/button_set_rest_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="220dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="357dp" />
 
     <TextView
         android:id="@+id/text_view_set_rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set rest 00:00"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="306dp" />
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="369dp" />
 
     <ImageButton
         android:id="@+id/button_set_rest_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="357dp" />
 
     <ImageButton
         android:id="@+id/button_round_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="368dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="443dp" />
 
     <TextView
         android:id="@+id/text_view_round_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Round 0"
-        tools:layout_editor_absoluteX="202dp"
-        tools:layout_editor_absoluteY="423dp" />
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="455dp" />
 
     <ImageButton
         android:id="@+id/button_round_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="263dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="443dp" />
 
     <ImageButton
         android:id="@+id/button_set_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="529dp" />
 
     <TextView
         android:id="@+id/text_view_set_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set 0"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="380dp" />
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="541dp" />
 
     <ImageButton
         android:id="@+id/button_set_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="368dp" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="529dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow2"
@@ -195,12 +193,23 @@
         app:flow_firstVerticalStyle="packed"
         app:flow_maxElementsWrap="3"
         app:flow_wrapMode="aligned"
-        app:layout_constraintBottom_toTopOf="@+id/button_save"
+        app:layout_constraintBottom_toTopOf="@+id/flow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_field_title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/text_field_title" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="button_back,button_save"
+        app:flow_firstHorizontalStyle="packed"
+        app:flow_firstVerticalStyle="packed"
+        app:flow_maxElementsWrap="2"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
