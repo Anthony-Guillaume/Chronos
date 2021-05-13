@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +13,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_set_number" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="616dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_title"
@@ -35,209 +45,162 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_warmup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        tools:layout_editor_absoluteX="281dp"
+        tools:layout_editor_absoluteY="411dp" />
 
     <TextView
         android:id="@+id/text_view_warmup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Warmup 00:00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        android:lines="2"
+        android:maxLines="2"
+        android:text="Warmup 00:00d"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="423dp" />
 
     <ImageButton
         android:id="@+id/button_warmup_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_view_warmup"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="263dp" />
 
     <ImageButton
         android:id="@+id/button_workout_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_workout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002" />
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="220dp" />
 
     <TextView
         android:id="@+id/text_view_workout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Workout 00:00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353" />
+        tools:layout_editor_absoluteX="263dp"
+        tools:layout_editor_absoluteY="306dp" />
 
     <ImageButton
         android:id="@+id/button_workout_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toEndOf="@+id/text_view_workout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002" />
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="263dp" />
 
     <ImageButton
         android:id="@+id/button_exercice_rest_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_exercice_rest"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="325dp" />
 
     <TextView
         android:id="@+id/text_view_exercice_rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise rest 00:00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="306dp" />
 
     <ImageButton
         android:id="@+id/button_exercice_rest_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toEndOf="@+id/text_view_exercice_rest"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="220dp" />
 
     <ImageButton
         android:id="@+id/button_set_rest_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_set_rest"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="220dp" />
 
     <TextView
         android:id="@+id/text_view_set_rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set rest 00:00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="306dp" />
 
     <ImageButton
         android:id="@+id/button_set_rest_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toEndOf="@+id/text_view_set_rest"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="325dp" />
 
     <ImageButton
         android:id="@+id/button_round_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_round_number"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="368dp" />
 
     <TextView
         android:id="@+id/text_view_round_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Round 0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="423dp" />
 
     <ImageButton
         android:id="@+id/button_round_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toEndOf="@+id/text_view_round_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="263dp" />
 
     <ImageButton
         android:id="@+id/button_set_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_remove_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_set_number"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="325dp" />
 
     <TextView
         android:id="@+id/text_view_set_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set 0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="380dp" />
 
     <ImageButton
         android:id="@+id/button_set_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="368dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="button_warmup_minus,text_view_warmup,button_warmup_plus,button_workout_minus,text_view_workout,button_workout_plus,button_exercice_rest_minus,text_view_exercice_rest,button_exercice_rest_plus,button_set_rest_minus,text_view_set_rest,button_set_rest_plus,button_round_minus,text_view_round_number,button_round_plus,button_set_minus,text_view_set_number,button_set_plus"
+        app:flow_firstHorizontalStyle="packed"
+        app:flow_firstVerticalStyle="packed"
+        app:flow_maxElementsWrap="3"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toEndOf="@+id/text_view_set_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_field_title"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

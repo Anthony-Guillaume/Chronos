@@ -3,6 +3,7 @@ package com.example.chronos.views.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,12 +43,19 @@ class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
     private fun observeViewModel()
     {
         viewModel.circuit.observe(viewLifecycleOwner) {
-            binding.textViewRoundNumber.text = it.exercise.numberOfRound.toString()
-            binding.textViewSetNumber.text = it.numberOfSet.toString()
-            binding.textViewWarmup.text = DurationHelper.format(it.warmup)
-            binding.textViewExerciceRest.text = DurationHelper.format(it.exercise.rest)
-            binding.textViewSetRest.text = DurationHelper.format(it.restBetweenSet)
-            binding.textViewWorkout.text = DurationHelper.format(it.exercise.workout)
+            binding.textViewRoundNumber.text = getString(R.string.number_of_round_text_view, it.exercise.numberOfRound)
+            binding.textViewSetNumber.text = getString(R.string.number_of_set_text_view, it.numberOfSet)
+            binding.textViewWarmup.text = getString(R.string.warmup_text_view, DurationHelper.format(it.warmup))
+            binding.textViewWorkout.text = getString(R.string.workout_text_view, DurationHelper.format(it.exercise.workout))
+            binding.textViewExerciceRest.text = getString(R.string.exercise_rest_text_view, DurationHelper.format(it.exercise.rest))
+            binding.textViewSetRest.text = getString(R.string.rest_between_set_text_view, DurationHelper.format(it.restBetweenSet))
+
+            binding.textViewRoundNumber.gravity = Gravity.CENTER
+            binding.textViewSetNumber.gravity = Gravity.CENTER
+            binding.textViewWarmup.gravity = Gravity.CENTER
+            binding.textViewWorkout.gravity = Gravity.CENTER
+            binding.textViewExerciceRest.gravity = Gravity.CENTER
+            binding.textViewSetRest.gravity = Gravity.CENTER
         }
     }
 

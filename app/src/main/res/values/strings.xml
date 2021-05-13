@@ -4,4 +4,10 @@
     <string name="training">Time to train !</string>
     <string name="training_history">My history</string>
     <string name="training_setting">Setting</string>
+    <string name="warmup_text_view">Warmup \n %1$s</string>
+    <string name="workout_text_view">Workout \n %1$s</string>
+    <string name="exercise_rest_text_view">Rest \n %1$s</string>
+    <string name="rest_between_set_text_view">Rest between set \n %1$s</string>
+    <string name="number_of_round_text_view">Rounds \n %1$d</string>
+    <string name="number_of_set_text_view">Sets \n %1$d</string>
 </resources>
