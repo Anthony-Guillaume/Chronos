@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Chronos</string>
+    <string name="PREFERENCE_FILE_KEY">com.example.chronos.circuits</string>
+    <string name="training">Time to train !</string>
+    <string name="training_history">My history</string>
+    <string name="training_setting">Setting</string>
+</resources>

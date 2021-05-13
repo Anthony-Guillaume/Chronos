@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.chronos.views.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_trainingFragment"
+            app:destination="@id/trainingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trainingSettingFragment"
+            app:destination="@id/trainingSettingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trainingHistoryFragment"
+            app:destination="@id/trainingHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingFragment"
+        android:name="com.example.chronos.views.fragments.TrainingFragment"
+        android:label="TrainingFragment" />
+    <fragment
+        android:id="@+id/trainingSettingFragment"
+        android:name="com.example.chronos.views.fragments.TrainingSettingFragment"
+        android:label="TrainingSettingFragment" />
+    <fragment
+        android:id="@+id/trainingHistoryFragment"
+        android:name="com.example.chronos.views.fragments.TrainingHistoryFragment"
+        android:label="TrainingHistoryFragment" />
+</navigation>
