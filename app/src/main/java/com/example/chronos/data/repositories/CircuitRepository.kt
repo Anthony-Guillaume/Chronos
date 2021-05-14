@@ -24,19 +24,19 @@ class CircuitRepository private constructor(private val dao: CircuitDao)
         return MutableLiveData(daoModels)
     }
 
-    fun addCircuit(model: Circuit)
+    fun add(model: Circuit)
     {
         models.value?.add(model)
         dao.insertAll(model)
     }
 
-    fun deleteCircuit(model: Circuit)
+    fun delete(model: Circuit)
     {
         models.value?.remove(model)
         dao.deleteAll(model)
     }
 
-    fun getCircuits() : LiveData<MutableList<Circuit>>
+    fun getAll() : LiveData<MutableList<Circuit>>
     {
         return models
     }

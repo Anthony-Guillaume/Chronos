@@ -1,6 +1,5 @@
 package com.example.chronos.viewModels
 
-import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,13 +26,13 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     {
         _circuit.value?.let {
             circuitToSave = it.copy()
-            repository.addCircuit(circuitToSave!!)
+            repository.add(circuitToSave!!)
         }
     }
 
     fun deleteLastSave()
     {
-        circuitToSave?.let { repository.deleteCircuit(it) }
+        circuitToSave?.let { repository.delete(it) }
     }
 
     fun updateTitle(title: String)
@@ -92,7 +91,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun decrementSetRestDuration()
     {
         _circuit.value?.also {
-            it.restBetweenSet = max(0, it.restBetweenSet - 1000)
+            it.restBetweenSets = max(0, it.restBetweenSets - 1000)
         }
         notifyDataChanged()
     }
@@ -100,7 +99,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun incrementSetRestDuration()
     {
         _circuit.value?.also {
-            it.restBetweenSet += 1000
+            it.restBetweenSets += 1000
         }
         notifyDataChanged()
     }
@@ -108,7 +107,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun decrementRound()
     {
         _circuit.value?.also {
-            it.exercise.numberOfRound = max(0, it.exercise.numberOfRound - 1)
+            it.exercise.numberOfRounds = max(0, it.exercise.numberOfRounds - 1)
         }
         notifyDataChanged()
     }
@@ -116,7 +115,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun incrementRound()
     {
         _circuit.value?.also {
-            it.exercise.numberOfRound += 1
+            it.exercise.numberOfRounds += 1
         }
         notifyDataChanged()
     }
@@ -124,7 +123,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun decrementSet()
     {
         _circuit.value?.also {
-            it.numberOfSet = max(0, it.numberOfSet - 1)
+            it.numberOfSets = max(0, it.numberOfSets - 1)
         }
         notifyDataChanged()
     }
@@ -132,7 +131,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun incrementSet()
     {
         _circuit.value?.also {
-            it.numberOfSet += 1
+            it.numberOfSets += 1
         }
         notifyDataChanged()
     }

@@ -46,9 +46,8 @@ class TrainingFragment : Fragment(R.layout.fragment_training)
             binding.textViewTime.text = DurationHelper.format(it)
         }
         viewModel.circuits.observe(viewLifecycleOwner) { circuits ->
-            val titles: MutableList<String> = mutableListOf()
-            circuits.forEach { titles.add(it.title) }
-            binding.spinnerCircuits.adapter = ArrayAdapter(requireContext(), R.layout.item_circuit, R.id.text_view_title, titles)
+            binding.spinnerCircuits.adapter = ArrayAdapter(
+                requireContext(), R.layout.item_circuit, R.id.text_view_title, circuits.map { it.title })
         }
     }
 

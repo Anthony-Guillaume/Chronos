@@ -8,7 +8,7 @@ enum class State { Idle, Warmup, Workout, ExerciseResting, SetResting, Done }
 data class Circuit(
     var title: String,
     var warmup: Long,
-    var restBetweenSet: Long,
+    var restBetweenSets: Long,
     val exercise: Exercise,
-    var numberOfSet: Int,
+    var numberOfSets: Int,
 )

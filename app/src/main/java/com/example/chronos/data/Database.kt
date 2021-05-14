@@ -2,10 +2,14 @@ package com.example.chronos.data
 
 import android.content.Context
 import com.example.chronos.data.dao.CircuitDao
+import com.example.chronos.data.dao.CircuitHistoryDao
 
 class Database private constructor(context: Context)
 {
     var circuitDao = CircuitDao(context)
+        private set
+
+    var circuitHistoryDao = CircuitHistoryDao(context)
         private set
 
     companion object

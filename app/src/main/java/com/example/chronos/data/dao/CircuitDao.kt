@@ -42,8 +42,10 @@ class CircuitDao(private val context: Context)
 
     fun getAll(): List<Circuit>
     {
-        return context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).all.map {
-            Json.decodeFromString(it.value as String)
+        val all: Map<String, String> = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).all as Map<String, String>
+        val circuits = all.filter { (key, _) -> key != CircuitHistoryDao.key }
+        return circuits.map {
+            Json.decodeFromString(it.value)
         }
     }
 }

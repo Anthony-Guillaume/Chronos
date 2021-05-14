@@ -43,12 +43,12 @@ class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
     private fun observeViewModel()
     {
         viewModel.circuit.observe(viewLifecycleOwner) {
-            binding.textViewRoundNumber.text = getString(R.string.number_of_rounds_text_view, it.exercise.numberOfRound)
-            binding.textViewSetNumber.text = getString(R.string.number_of_sets_text_view, it.numberOfSet)
-            binding.textViewWarmup.text = getString(R.string.warmup_text_view, DurationHelper.format(it.warmup))
-            binding.textViewWorkout.text = getString(R.string.workout_text_view, DurationHelper.format(it.exercise.workout))
-            binding.textViewExerciceRest.text = getString(R.string.exercise_rest_text_view, DurationHelper.format(it.exercise.rest))
-            binding.textViewSetRest.text = getString(R.string.rest_between_set_text_view, DurationHelper.format(it.restBetweenSet))
+            binding.textViewRoundNumber.text = getString(R.string.number_of_rounds_setting, it.exercise.numberOfRounds)
+            binding.textViewSetNumber.text = getString(R.string.number_of_sets_setting, it.numberOfSets)
+            binding.textViewWarmup.text = getString(R.string.warmup_setting, DurationHelper.format(it.warmup))
+            binding.textViewWorkout.text = getString(R.string.workout_setting, DurationHelper.format(it.exercise.workout))
+            binding.textViewExerciceRest.text = getString(R.string.exercise_rest_setting, DurationHelper.format(it.exercise.rest))
+            binding.textViewSetRest.text = getString(R.string.rest_between_sets_setting, DurationHelper.format(it.restBetweenSets))
 
             binding.textViewRoundNumber.gravity = Gravity.CENTER
             binding.textViewSetNumber.gravity = Gravity.CENTER

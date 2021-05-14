@@ -38,7 +38,7 @@ class CircuitStateHandler(private val circuit: Circuit,
 
     private fun handleWarmup()
     {
-        if ((circuit.numberOfSet == 0) or (circuit.exercise.numberOfRound == 0))
+        if ((circuit.numberOfSets == 0) or (circuit.exercise.numberOfRounds == 0))
         {
             state.value = State.Done
         }
@@ -53,16 +53,16 @@ class CircuitStateHandler(private val circuit: Circuit,
     private fun handleWorkout()
     {
         ++exerciseCount
-        if (setCount == circuit.numberOfSet)
+        if (setCount == circuit.numberOfSets)
         {
             state.value = State.Done
         }
         else
         {
-            if (exerciseCount == circuit.exercise.numberOfRound)
+            if (exerciseCount == circuit.exercise.numberOfRounds)
             {
                 ++setCount
-                if (setCount == circuit.numberOfSet)
+                if (setCount == circuit.numberOfSets)
                 {
                     state.value = State.Done
                 }

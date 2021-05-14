@@ -6,14 +6,18 @@
     <string name="training_history">My history</string>
     <string name="training_setting">Setting</string>
 
-    <string name="warmup_text_view">Warmup \n %1$s</string>
-    <string name="workout_text_view">Workout \n %1$s</string>
-    <string name="exercise_rest_text_view">Rest \n %1$s</string>
-    <string name="rest_between_set_text_view">Rest between set \n %1$s</string>
-    <string name="number_of_rounds_text_view">Rounds \n %1$d</string>
-    <string name="number_of_sets_text_view">Sets \n %1$d</string>
+    <string name="warmup_setting">Warmup \n %1$s</string>
+    <string name="workout_setting">Workout \n %1$s</string>
+    <string name="exercise_rest_setting">Rest \n %1$s</string>
+    <string name="rest_between_sets_setting">Rest between set \n %1$s</string>
+    <string name="number_of_rounds_setting">Rounds \n %1$d</string>
+    <string name="number_of_sets_setting">Sets \n %1$d</string>
+    <string name="date_hh_mm_yyyy">%s/%s/%s</string>
+
+    <string name="ratio_number_of_sets_done">%1$d / %2$d</string>
 
     <string name="circuit_title">Title</string>
+    <string name="date">Date</string>
     <string name="number_of_rounds">Number of rounds</string>
     <string name="number_of_sets">Number of sets</string>
     <string name="missing_title">Title must be set</string>

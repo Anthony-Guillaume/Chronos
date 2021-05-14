@@ -1,5 +1,6 @@
 package com.example.chronos.data.services
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.chronos.data.models.Circuit
 import com.example.chronos.data.models.State
@@ -8,7 +9,8 @@ import com.example.chronos.data.models.State
 class CircuitHandler(
     private val circuit: Circuit,
     private val state: MutableLiveData<State>,
-    private val time: MutableLiveData<Long>)
+    private val time: MutableLiveData<Long>,
+    private val onFinish: ((State) -> Unit))
 {
     private var timeCache: Long = 0
     var paused: Boolean = false
@@ -25,6 +27,7 @@ class CircuitHandler(
         {
             circuitStateHandler.handle()
             start()
+            state.value?.let { onFinish.invoke(it) }
         }
     })
 
@@ -52,7 +55,7 @@ class CircuitHandler(
             State.Warmup -> circuitTimer.start(circuit.warmup)
             State.Workout -> circuitTimer.start(circuit.exercise.workout)
             State.ExerciseResting -> circuitTimer.start(circuit.exercise.rest)
-            State.SetResting -> circuitTimer.start(circuit.restBetweenSet)
+            State.SetResting -> circuitTimer.start(circuit.restBetweenSets)
             State.Done -> return
         }
     }

@@ -1,6 +1,7 @@
 package com.example.chronos.views.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,7 +26,7 @@ class TrainingHistoryFragment : Fragment(R.layout.fragment_training_history)
     {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTrainingHistoryBinding.bind(view)
-        init()
+        observeViewModel()
     }
 
     override fun onDestroyView()
@@ -34,10 +35,11 @@ class TrainingHistoryFragment : Fragment(R.layout.fragment_training_history)
         super.onDestroyView()
     }
 
-    private fun init()
+    private fun observeViewModel()
     {
-        viewModel.circuits.observe(viewLifecycleOwner) { circuits ->
-            binding.recyclerViewCircuit.adapter = CircuitHistoryAdapter(circuits)
+        viewModel.circuitHistories.observe(viewLifecycleOwner) {
+            Log.i("TEST", "training $it :: ${viewModel.circuitHistories.value}")
+            binding.recyclerViewCircuit.adapter = CircuitHistoryAdapter(it)
         }
     }
 }

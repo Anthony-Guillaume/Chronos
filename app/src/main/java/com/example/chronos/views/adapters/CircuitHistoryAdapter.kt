@@ -1,12 +1,16 @@
 package com.example.chronos.views.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chronos.data.models.Circuit
+import com.example.chronos.R
+import com.example.chronos.data.models.CircuitHistory
 import com.example.chronos.databinding.ItemCircuitHistoryBinding
+import com.example.chronos.views.utils.DateHelper
 
-class CircuitHistoryAdapter(private val dataList: List<Circuit>) : RecyclerView.Adapter<CircuitHistoryAdapter.ViewHolder>()
+class CircuitHistoryAdapter(private val dataList: List<CircuitHistory>)
+    : RecyclerView.Adapter<CircuitHistoryAdapter.ViewHolder>()
 {
     companion object {
         const val TAG: String = "CircuitHistoryAdapter"
@@ -28,9 +32,11 @@ class CircuitHistoryAdapter(private val dataList: List<Circuit>) : RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         val item = dataList[position]
+        val context: Context = holder.itemView.context
+        holder.binding.textViewDate.text = DateHelper.format(item.date)
         holder.binding.textViewTitle.text = item.title
-        holder.binding.textViewNumberOfSet.text = item.numberOfSet.toString()
-        holder.binding.textViewNumberOfRound.text = item.exercise.numberOfRound.toString()
+        holder.binding.textViewNumberOfSet.text = context.getString(
+            R.string.ratio_number_of_sets_done, item.numberOfSetsDone, item.numberOfSets)
     }
 
     override fun getItemCount(): Int = dataList.size
