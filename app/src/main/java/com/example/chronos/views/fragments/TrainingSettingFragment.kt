@@ -12,6 +12,7 @@ import com.example.chronos.databinding.FragmentTrainingSettingBinding
 import com.example.chronos.viewModels.TrainingSettingViewModel
 import com.example.chronos.viewModels.ViewModelProvider
 import com.example.chronos.views.dialogs.InvalidTitleDialog
+import com.example.chronos.views.utils.ContinuousClickHandler
 import com.example.chronos.views.utils.DurationHelper
 import com.google.android.material.snackbar.Snackbar
 
@@ -84,41 +85,17 @@ class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
                     .show()
             }
         }
-        binding.buttonWarmupMinus.setOnClickListener {
-            viewModel.decrementWarmupDuration()
-        }
-        binding.buttonWarmupPlus.setOnClickListener {
-            viewModel.incrementWarmupDuration()
-        }
-        binding.buttonWorkoutMinus.setOnClickListener {
-            viewModel.decrementWorkoutDuration()
-        }
-        binding.buttonWorkoutPlus.setOnClickListener {
-            viewModel.incrementWorkoutDuration()
-        }
-        binding.buttonExerciceRestMinus.setOnClickListener {
-            viewModel.decrementExerciseRestDuration()
-        }
-        binding.buttonExerciceRestPlus.setOnClickListener {
-            viewModel.incrementExerciseRestDuration()
-        }
-        binding.buttonSetRestMinus.setOnClickListener {
-            viewModel.decrementSetRestDuration()
-        }
-        binding.buttonSetRestPlus.setOnClickListener {
-            viewModel.incrementSetRestDuration()
-        }
-        binding.buttonRoundMinus.setOnClickListener {
-            viewModel.decrementRound()
-        }
-        binding.buttonRoundPlus.setOnClickListener {
-            viewModel.incrementRound()
-        }
-        binding.buttonSetMinus.setOnClickListener {
-            viewModel.decrementSet()
-        }
-        binding.buttonSetPlus.setOnClickListener {
-            viewModel.incrementSet()
-        }
+        ContinuousClickHandler(binding.buttonWarmupMinus) { viewModel.decrementWarmupDuration() }
+        ContinuousClickHandler(binding.buttonWarmupPlus) { viewModel.incrementWarmupDuration() }
+        ContinuousClickHandler(binding.buttonWorkoutMinus) { viewModel.decrementWorkoutDuration() }
+        ContinuousClickHandler(binding.buttonWorkoutPlus) { viewModel.incrementWorkoutDuration() }
+        ContinuousClickHandler(binding.buttonExerciceRestMinus) { viewModel.decrementExerciseRestDuration() }
+        ContinuousClickHandler(binding.buttonExerciceRestPlus) { viewModel.incrementExerciseRestDuration() }
+        ContinuousClickHandler(binding.buttonSetRestMinus) { viewModel.decrementSetRestDuration() }
+        ContinuousClickHandler(binding.buttonSetRestPlus) { viewModel.incrementSetRestDuration() }
+        ContinuousClickHandler(binding.buttonRoundMinus) { viewModel.decrementRound() }
+        ContinuousClickHandler(binding.buttonRoundPlus) { viewModel.incrementRound() }
+        ContinuousClickHandler(binding.buttonSetMinus) { viewModel.decrementSet() }
+        ContinuousClickHandler(binding.buttonSetPlus) { viewModel.incrementSet() }
     }
 }

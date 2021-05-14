@@ -107,7 +107,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun decrementRound()
     {
         _circuit.value?.also {
-            it.exercise.numberOfRounds = max(0, it.exercise.numberOfRounds - 1)
+            it.exercise.numberOfRounds = max(1, it.exercise.numberOfRounds - 1)
         }
         notifyDataChanged()
     }
@@ -123,7 +123,7 @@ class TrainingSettingViewModel(private val repository: CircuitRepository) : View
     fun decrementSet()
     {
         _circuit.value?.also {
-            it.numberOfSets = max(0, it.numberOfSets - 1)
+            it.numberOfSets = max(1, it.numberOfSets - 1)
         }
         notifyDataChanged()
     }
