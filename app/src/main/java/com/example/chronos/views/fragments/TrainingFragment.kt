@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.chronos.R
+import com.example.chronos.data.models.State
 import com.example.chronos.databinding.FragmentTrainingBinding
 import com.example.chronos.viewModels.CircuitViewModel
 import com.example.chronos.viewModels.ViewModelProvider
@@ -39,15 +40,28 @@ class TrainingFragment : Fragment(R.layout.fragment_training)
 
     private fun observeViewModel()
     {
-        viewModel.state.observe(viewLifecycleOwner) {
-            binding.textViewState.text = it.toString()
-        }
         viewModel.time.observe(viewLifecycleOwner) {
             binding.textViewTime.text = DurationHelper.format(it)
         }
         viewModel.circuits.observe(viewLifecycleOwner) { circuits ->
             binding.spinnerCircuits.adapter = ArrayAdapter(
                 requireContext(), R.layout.item_circuit, R.id.text_view_title, circuits.map { it.title })
+        }
+        viewModel.canStart.observe(viewLifecycleOwner) {
+            binding.buttonStop.isEnabled = !it
+            binding.buttonReset.isEnabled = !it
+            binding.buttonStart.isEnabled = it
+        }
+        viewModel.state.observe(viewLifecycleOwner) {
+
+            when (it)
+            {
+                State.Warmup -> binding.textViewState.text = getString(R.string.state_warmup)
+                State.Workout -> binding.textViewState.text = getString(R.string.state_workout)
+                State.ExerciseResting -> binding.textViewState.text = getString(R.string.state_exerciseResting)
+                State.SetResting -> binding.textViewState.text = getString(R.string.state_setResting)
+                else -> {}
+            }
         }
     }
 

@@ -1,6 +1,5 @@
 package com.example.chronos.data.services
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.chronos.data.models.Circuit
 import com.example.chronos.data.models.State

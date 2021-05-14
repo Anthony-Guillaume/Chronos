@@ -17,6 +17,7 @@
     <string name="ratio_number_of_sets_done">%1$d / %2$d</string>
 
     <string name="circuit_title">Title</string>
+    <string name="my_circuits">My circuits</string>
     <string name="date">Date</string>
     <string name="number_of_rounds">Number of rounds</string>
     <string name="number_of_sets">Number of sets</string>
@@ -27,4 +28,9 @@
     <string name="stop">Stop</string>
     <string name="reset">Reset</string>
     <string name="save">Save</string>
+
+    <string name="state_warmup">Warmup</string>
+    <string name="state_workout">Workout</string>
+    <string name="state_exerciseResting">Rest</string>
+    <string name="state_setResting">Set rest</string>
 </resources>

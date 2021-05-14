@@ -21,6 +21,9 @@ class CircuitViewModel(
     private val _time: MutableLiveData<Long> = MutableLiveData()
     val time get() = _time as LiveData<Long>
 
+    private val _canStart: MutableLiveData<Boolean> = MutableLiveData(true)
+    val canStart get() = _canStart as LiveData<Boolean>
+
     private val _state: MutableLiveData<State> = MutableLiveData()
     val state get() = _state as LiveData<State>
 
@@ -44,23 +47,35 @@ class CircuitViewModel(
 
     fun start()
     {
-        circuitHandler.start()
-        val circuit = circuitSelected as Circuit
-        circuitHistory = CircuitHistory(circuit.title,
-            DateHelper.getCurrentDate(),
-            circuit.exercise.numberOfRounds,
-            circuit.numberOfSets,
-            0)
+        if (_canStart.value == true)
+        {
+            circuitHandler.start()
+            val circuit = circuitSelected as Circuit
+            circuitHistory = CircuitHistory(circuit.title,
+                DateHelper.getCurrentDate(),
+                circuit.exercise.numberOfRounds,
+                circuit.numberOfSets,
+                0)
+            _canStart.value = false
+        }
     }
 
     fun stop()
     {
-        circuitHandler.stop()
+        if (_canStart.value == false)
+        {
+            circuitHandler.stop()
+            _canStart.value = true
+        }
     }
 
     fun reset()
     {
-        circuitHandler.reset()
+        if (_canStart.value == false)
+        {
+            circuitHandler.reset()
+            _canStart.value = true
+        }
     }
 
     fun updateCircuitSelected(index: Int)
