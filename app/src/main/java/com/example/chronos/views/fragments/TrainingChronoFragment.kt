@@ -7,29 +7,30 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.chronos.R
-import com.example.chronos.data.models.State
-import com.example.chronos.databinding.FragmentTrainingBinding
-import com.example.chronos.viewModels.CircuitViewModel
+import com.example.chronos.data.entities.State
+import com.example.chronos.databinding.FragmentChronoTrainingBinding
+import com.example.chronos.viewModels.TrainingChronoViewModel
 import com.example.chronos.viewModels.ViewModelProvider
 import com.example.chronos.views.utils.DurationHelper
 
-class TrainingFragment : Fragment(R.layout.fragment_training)
+class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
 {
     companion object {
         const val TAG: String = "TrainingFragment"
     }
-    private var _binding: FragmentTrainingBinding? = null
+    private var _binding: FragmentChronoTrainingBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: CircuitViewModel by viewModels {
-        ViewModelProvider.provideCircuitViewModelFactory(requireContext().applicationContext)
+    private val viewModel: TrainingChronoViewModel by viewModels {
+        ViewModelProvider.provideTrainingChronoViewModelFactory(requireContext().applicationContext)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentTrainingBinding.bind(view)
+        _binding = FragmentChronoTrainingBinding.bind(view)
         observeViewModel()
         setActionOnViewModel()
+        viewModel.fetchData()
     }
 
     override fun onDestroyView()
@@ -53,13 +54,13 @@ class TrainingFragment : Fragment(R.layout.fragment_training)
             binding.buttonStart.isEnabled = it
         }
         viewModel.state.observe(viewLifecycleOwner) {
-
             when (it)
             {
                 State.Warmup -> binding.textViewState.text = getString(R.string.state_warmup)
                 State.Workout -> binding.textViewState.text = getString(R.string.state_workout)
                 State.ExerciseResting -> binding.textViewState.text = getString(R.string.state_exerciseResting)
                 State.SetResting -> binding.textViewState.text = getString(R.string.state_setResting)
+                State.Done -> binding.textViewState.text = getString(R.string.state_done)
                 else -> {}
             }
         }

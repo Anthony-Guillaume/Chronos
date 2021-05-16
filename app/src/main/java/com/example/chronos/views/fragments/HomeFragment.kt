@@ -31,13 +31,13 @@ class HomeFragment : Fragment(R.layout.fragment_home)
     private fun init()
     {
         binding.buttonTraining.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_trainingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_trainingChronoFragment)
         }
         binding.buttonTrainingHistory.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_trainingHistoryFragment)
         }
         binding.buttonTrainingSetting.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_trainingSettingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_myCircuitsFragment)
         }
     }
 }

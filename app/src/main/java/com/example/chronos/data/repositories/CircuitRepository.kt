@@ -1,44 +1,43 @@
 package com.example.chronos.data.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import com.example.chronos.data.dao.CircuitDao
-import com.example.chronos.data.models.Circuit
-import com.example.chronos.data.models.Exercise
+import com.example.chronos.data.entities.Circuit
 
 class CircuitRepository private constructor(private val dao: CircuitDao)
 {
-    private val models: LiveData<MutableList<Circuit>> by lazy {
-        initModels()
+    private var _cache: MutableList<Circuit>? = null
+
+    private suspend fun getData() : MutableList<Circuit>
+    {
+        Log.i("TEST", "getData $_cache")
+        return _cache ?: dao.getAll().toMutableList().also { _cache = it }
     }
 
-    private fun initModels() : LiveData<MutableList<Circuit>>
+    suspend fun add(model: Circuit)
     {
-        val daoModels = dao.getAll().toMutableList()
-        if (daoModels.isEmpty())
+        val data = getData()
+        for (m in data)
         {
-            return MutableLiveData(mutableListOf(Circuit("Default", 10000, 10000,
-                Exercise(10000, 10000, 3),
-                3)))
+            if (m.title == model.title)
+            {
+                delete(m)
+                break
+            }
         }
-        return MutableLiveData(daoModels)
-    }
-
-    fun add(model: Circuit)
-    {
-        models.value?.add(model)
+        data.add(model)
         dao.insertAll(model)
     }
 
-    fun delete(model: Circuit)
+    suspend fun delete(model: Circuit)
     {
-        models.value?.remove(model)
+        getData().remove(model)
         dao.deleteAll(model)
     }
 
-    fun getAll() : LiveData<MutableList<Circuit>>
+    suspend fun getAll() : MutableList<Circuit>
     {
-        return models
+        return getData()
     }
 
     companion object

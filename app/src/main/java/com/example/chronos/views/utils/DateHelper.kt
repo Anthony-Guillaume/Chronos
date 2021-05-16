@@ -1,6 +1,6 @@
 package com.example.chronos.views.utils
 
-import com.example.chronos.data.models.Date
+import com.example.chronos.data.entities.Date
 import java.util.*
 
 object DateHelper

@@ -1,9 +1,8 @@
 package com.example.chronos.data.dao
 
 import android.content.Context
-import androidx.compose.runtime.key
 import com.example.chronos.R
-import com.example.chronos.data.models.CircuitHistory
+import com.example.chronos.data.entities.CircuitHistory
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -15,7 +14,7 @@ class CircuitHistoryDao(private val context: Context)
     }
     private val fileKey: String = context.getString(R.string.PREFERENCE_FILE_KEY)
 
-    fun insertAll(models: List<CircuitHistory>)
+    suspend fun insertAll(models: List<CircuitHistory>)
     {
         val sharedPref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
@@ -24,7 +23,7 @@ class CircuitHistoryDao(private val context: Context)
         }
     }
 
-    fun deleteAll(vararg models: CircuitHistory)
+    suspend fun deleteAll(vararg models: CircuitHistory)
     {
         val sharedPref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
@@ -36,7 +35,7 @@ class CircuitHistoryDao(private val context: Context)
         }
     }
 
-    fun getAll(): List<CircuitHistory>
+    suspend fun getAll(): List<CircuitHistory>
     {
         val model = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).getString(key, null)
         return if (model!= null) Json.decodeFromString(model) else listOf()

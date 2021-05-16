@@ -1,20 +1,22 @@
 package com.example.chronos.viewModels
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.chronos.data.entities.Circuit
 import com.example.chronos.data.repositories.CircuitRepository
+import com.example.chronos.data.repositories.SharedCircuitRepository
 import com.example.chronos.data.services.CircuitUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TrainingSettingViewModel(private val circuitRepository: CircuitRepository) : ViewModel()
+class EditMyCircuitViewModel(
+    private val circuitRepository: CircuitRepository,
+    private val sharedCircuitRepository: SharedCircuitRepository)
+    : ViewModel()
 {
-    private var circuitToSave: Circuit? = null
-
-    val circuits: LiveData<MutableList<Circuit>> = liveData { circuitRepository.getAll() }
-
-    private val _circuit: MutableLiveData<Circuit> = MutableLiveData(CircuitUtils.getDefaultCircuit())
+    private val _circuit: MutableLiveData<Circuit> = MutableLiveData()
     val circuit get() = _circuit as LiveData<Circuit>
 
     private fun notifyDataChanged()
@@ -22,22 +24,19 @@ class TrainingSettingViewModel(private val circuitRepository: CircuitRepository)
         _circuit.postValue(_circuit.value) // to force update even if only one property has changed
     }
 
-    fun save()
+    fun fetchData()
     {
-        Log.i("TEST", ":: ${_circuit.value}")
-        _circuit.value?.let {
-            circuitToSave = it.copy()
-            viewModelScope.launch(Dispatchers.IO) {
-                circuitRepository.add(circuitToSave!!)
-            }
+        viewModelScope.launch {
+            _circuit.value = sharedCircuitRepository.circuitToEdit
         }
     }
 
-    fun deleteLastSave()
+    fun save()
     {
-        circuitToSave?.let {
+        _circuit.value?.let {
+            val circuitToSave = it.copy()
             viewModelScope.launch(Dispatchers.IO) {
-                circuitRepository.delete(it)
+                circuitRepository.add(circuitToSave)
             }
         }
     }

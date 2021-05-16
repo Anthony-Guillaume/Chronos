@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chronos.R
-import com.example.chronos.data.models.CircuitHistory
+import com.example.chronos.data.entities.CircuitHistory
 import com.example.chronos.databinding.ItemCircuitHistoryBinding
 import com.example.chronos.views.utils.DateHelper
 

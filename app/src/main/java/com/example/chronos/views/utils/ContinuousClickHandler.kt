@@ -9,7 +9,7 @@ import android.view.View
 class ContinuousClickHandler(view: View, val callback: (() -> Unit))
 {
     private val handler: Handler = Handler(Looper.getMainLooper())
-    private val delay: Long = 75
+    private val delay: Long = 50
     private var toBeCall: Boolean = false
 
     inner class RepeatedRunnable : Runnable

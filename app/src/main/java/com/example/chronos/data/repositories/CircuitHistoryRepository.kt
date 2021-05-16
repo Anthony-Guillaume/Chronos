@@ -1,43 +1,38 @@
 package com.example.chronos.data.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.chronos.data.dao.CircuitHistoryDao
-import com.example.chronos.data.models.CircuitHistory
+import com.example.chronos.data.entities.CircuitHistory
 
-class CircuitHistoryRepository private constructor(private val dao: CircuitHistoryDao) {
-    private val models: LiveData<MutableList<CircuitHistory>> by lazy {
-        initModels()
-    }
+class CircuitHistoryRepository private constructor(private val dao: CircuitHistoryDao)
+{
+    private var _cache: MutableList<CircuitHistory>? = null
     private val maxSize: Int = 30
 
-    private fun initModels(): LiveData<MutableList<CircuitHistory>> {
-        val daoModels = dao.getAll().toMutableList()
-        if (daoModels.isEmpty()) {
-            return MutableLiveData(mutableListOf())
-        }
-        return MutableLiveData(daoModels)
-    }
-
-    fun add(model: CircuitHistory) {
-        val histories = models.value ?: return
-        if (histories.size >= maxSize)
-        {
-            histories.removeFirst()
-        }
-        histories.add(model)
-        dao.insertAll(histories)
-    }
-
-    fun delete(model: CircuitHistory)
+    private suspend fun getData() : MutableList<CircuitHistory>
     {
-        models.value?.remove(model)
+        return _cache ?: dao.getAll().toMutableList().also { _cache = it }
+    }
+
+    suspend fun add(model: CircuitHistory)
+    {
+        val data = getData()
+        if (data.size >= maxSize)
+        {
+            delete(data.first())
+        }
+        data.add(model)
+        dao.insertAll(data)
+    }
+
+    suspend fun delete(model: CircuitHistory)
+    {
+        getData().remove(model)
         dao.deleteAll(model)
     }
 
-    fun getAll(): LiveData<MutableList<CircuitHistory>>
+    suspend fun getAll() : MutableList<CircuitHistory>
     {
-        return models
+        return getData()
     }
 
     companion object {

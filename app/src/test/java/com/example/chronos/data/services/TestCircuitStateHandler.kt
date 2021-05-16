@@ -2,9 +2,9 @@ package com.example.chronos.data.services
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.example.chronos.data.models.Circuit
-import com.example.chronos.data.models.Exercise
-import com.example.chronos.data.models.State
+import com.example.chronos.data.entities.Circuit
+import com.example.chronos.data.entities.Exercise
+import com.example.chronos.data.entities.State
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test

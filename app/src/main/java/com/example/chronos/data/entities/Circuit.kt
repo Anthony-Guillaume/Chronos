@@ -1,4 +1,4 @@
-package com.example.chronos.data.models
+package com.example.chronos.data.entities
 
 import kotlinx.serialization.Serializable
 

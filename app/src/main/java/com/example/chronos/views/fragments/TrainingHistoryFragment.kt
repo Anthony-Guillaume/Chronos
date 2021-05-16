@@ -1,13 +1,12 @@
 package com.example.chronos.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.chronos.R
 import com.example.chronos.databinding.FragmentTrainingHistoryBinding
-import com.example.chronos.viewModels.CircuitViewModel
+import com.example.chronos.viewModels.TrainingHistoryViewModel
 import com.example.chronos.viewModels.ViewModelProvider
 import com.example.chronos.views.adapters.CircuitHistoryAdapter
 
@@ -18,8 +17,8 @@ class TrainingHistoryFragment : Fragment(R.layout.fragment_training_history)
     }
     private var _binding: FragmentTrainingHistoryBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: CircuitViewModel by viewModels {
-        ViewModelProvider.provideCircuitViewModelFactory(requireContext().applicationContext)
+    private val viewModel: TrainingHistoryViewModel by viewModels {
+        ViewModelProvider.provideTrainingHistoryViewModelFactory(requireContext().applicationContext)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -27,6 +26,7 @@ class TrainingHistoryFragment : Fragment(R.layout.fragment_training_history)
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTrainingHistoryBinding.bind(view)
         observeViewModel()
+        viewModel.fetchData()
     }
 
     override fun onDestroyView()
@@ -37,8 +37,7 @@ class TrainingHistoryFragment : Fragment(R.layout.fragment_training_history)
 
     private fun observeViewModel()
     {
-        viewModel.circuitHistories.observe(viewLifecycleOwner) {
-            Log.i("TEST", "training $it :: ${viewModel.circuitHistories.value}")
+        viewModel.histories.observe(viewLifecycleOwner) {
             binding.recyclerViewCircuit.adapter = CircuitHistoryAdapter(it)
         }
     }

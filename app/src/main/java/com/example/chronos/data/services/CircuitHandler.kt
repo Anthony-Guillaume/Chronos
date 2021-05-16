@@ -1,8 +1,8 @@
 package com.example.chronos.data.services
 
 import androidx.lifecycle.MutableLiveData
-import com.example.chronos.data.models.Circuit
-import com.example.chronos.data.models.State
+import com.example.chronos.data.entities.Circuit
+import com.example.chronos.data.entities.State
 
 
 class CircuitHandler(
