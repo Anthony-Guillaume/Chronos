@@ -29,22 +29,27 @@ class TrainingChronoViewModel(
     private val _state: MutableLiveData<State> = MutableLiveData()
     val state get() = _state as LiveData<State>
 
-    private var circuitSelected: Circuit
-    private var circuitHandler: CircuitHandler
+    private lateinit var circuitSelected: Circuit
+    private lateinit var circuitHandler: CircuitHandler
     private var circuitHistory: CircuitHistory? = null
 
+    private val _needToCreateCircuit: MutableLiveData<Boolean> = MutableLiveData()
+    val needToCreateCircuit get() = _needToCreateCircuit as LiveData<Boolean>
+
     init
+    {
+        initialize()
+    }
+
+    private fun initialize()
     {
         when (circuits.value?.isEmpty())
         {
             true, null -> {
-                circuitSelected = CircuitUtils.getDefaultCircuit()
-                circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
-                viewModelScope.launch(IO) {
-                    circuitRepository.add(circuitSelected)
-                }
+                _needToCreateCircuit.value = true
             }
             false -> {
+                _needToCreateCircuit.value = false
                 circuitSelected = circuits.value?.first()!!
                 circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
             }
@@ -55,20 +60,7 @@ class TrainingChronoViewModel(
     {
         viewModelScope.launch {
             _circuits.value = circuitRepository.getAll()
-            when (circuits.value?.isEmpty())
-            {
-                true, null -> {
-                    circuitSelected = CircuitUtils.getDefaultCircuit()
-                    circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
-                    viewModelScope.launch(IO) {
-                        circuitRepository.add(circuitSelected)
-                    }
-                }
-                false -> {
-                    circuitSelected = circuits.value?.first()!!
-                    circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
-                }
-            }
+            initialize()
         }
     }
 

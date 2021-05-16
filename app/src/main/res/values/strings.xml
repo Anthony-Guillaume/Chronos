@@ -23,6 +23,8 @@
     <string name="number_of_sets">Number of sets</string>
     <string name="missing_title">Title must be set</string>
     <string name="understood">Understood</string>
+    <string name="circuits_list_empty">No circuit set</string>
+    <string name="create_circuit">Create my circuit</string>
     <string name="back">Back</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>

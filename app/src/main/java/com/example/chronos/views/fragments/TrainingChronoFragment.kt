@@ -6,11 +6,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.chronos.R
 import com.example.chronos.data.entities.State
 import com.example.chronos.databinding.FragmentChronoTrainingBinding
 import com.example.chronos.viewModels.TrainingChronoViewModel
 import com.example.chronos.viewModels.ViewModelProvider
+import com.example.chronos.views.dialogs.RedirectionToAddCircuitDialog
 import com.example.chronos.views.utils.DurationHelper
 
 class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
@@ -41,6 +43,15 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
 
     private fun observeViewModel()
     {
+        viewModel.needToCreateCircuit.observe(viewLifecycleOwner) {
+            if (it)
+            {
+                val dialog = RedirectionToAddCircuitDialog()
+                dialog.onRedirectClick = { findNavController().navigate(R.id.action_trainingChronoFragment_to_trainingSettingFragment) }
+                dialog.onCancelClick = { findNavController().navigate(R.id.action_trainingChronoFragment_to_homeFragment) }
+                dialog.show(childFragmentManager, TAG)
+            }
+        }
         viewModel.time.observe(viewLifecycleOwner) {
             binding.textViewTime.text = DurationHelper.format(it)
         }

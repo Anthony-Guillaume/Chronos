@@ -40,7 +40,16 @@
     <fragment
         android:id="@+id/trainingChronoFragment"
         android:name="com.example.chronos.views.fragments.TrainingChronoFragment"
-        android:label="TrainingChronoFragment" />
+        android:label="TrainingChronoFragment" >
+        <action
+            android:id="@+id/action_trainingChronoFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_trainingChronoFragment_to_trainingSettingFragment"
+            app:destination="@id/trainingSettingFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trainingSettingFragment"
         android:name="com.example.chronos.views.fragments.TrainingSettingFragment"
