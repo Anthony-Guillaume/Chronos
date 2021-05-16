@@ -27,7 +27,7 @@ class MyCircuitsFragment : Fragment(R.layout.fragment_my_circuits) {
         _binding = FragmentMyCircuitsBinding.bind(view)
         observeViewModel()
         binding.buttonAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_myCircuitsFragment_to_trainingSettingFragment)
+            findNavController().navigate(R.id.action_myCircuitsFragment_to_createCircuitFragment)
         }
         viewModel.fetchData()
     }

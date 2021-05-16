@@ -8,11 +8,11 @@ import com.example.chronos.data.services.CircuitUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TrainingSettingViewModel(private val circuitRepository: CircuitRepository) : ViewModel()
+class CreateCircuitViewModel(private val circuitRepository: CircuitRepository) : ViewModel()
 {
     private var circuitToSave: Circuit? = null
 
-    val circuits: LiveData<MutableList<Circuit>> = liveData { circuitRepository.getAll() }
+    private val _circuits: MutableLiveData<MutableList<Circuit>> = MutableLiveData()
 
     private val _circuit: MutableLiveData<Circuit> = MutableLiveData(CircuitUtils.getDefaultCircuit())
     val circuit get() = _circuit as LiveData<Circuit>
@@ -22,9 +22,30 @@ class TrainingSettingViewModel(private val circuitRepository: CircuitRepository)
         _circuit.postValue(_circuit.value) // to force update even if only one property has changed
     }
 
+    fun fetchData()
+    {
+        viewModelScope.launch {
+            _circuits.value = circuitRepository.getAll()
+        }
+    }
+
+    fun isAlreadyCircuitWithTitle() : Boolean
+    {
+        if (_circuit.value == null)
+        {
+            return false
+        }
+        _circuits.value?.forEach { c ->
+            if (c.title == _circuit.value!!.title)
+            {
+                return true
+            }
+        }
+        return false
+    }
+
     fun save()
     {
-        Log.i("TEST", ":: ${_circuit.value}")
         _circuit.value?.let {
             circuitToSave = it.copy()
             viewModelScope.launch(Dispatchers.IO) {

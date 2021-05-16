@@ -10,17 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="615dp" />
-
-    <Button
-        android:id="@+id/button_back"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="616dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_title"
@@ -194,23 +186,10 @@
         app:flow_firstVerticalStyle="packed"
         app:flow_maxElementsWrap="3"
         app:flow_wrapMode="aligned"
-        app:layout_constraintBottom_toTopOf="@+id/flow"
+        app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_field_title" />
-
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="button_back,button_save"
-        app:flow_firstHorizontalStyle="packed"
-        app:flow_firstVerticalStyle="packed"
-        app:flow_maxElementsWrap="2"
-        app:flow_wrapMode="aligned"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

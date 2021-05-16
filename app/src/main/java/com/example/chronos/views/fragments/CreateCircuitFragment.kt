@@ -8,31 +8,33 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.chronos.R
-import com.example.chronos.databinding.FragmentTrainingSettingBinding
-import com.example.chronos.viewModels.TrainingSettingViewModel
+import com.example.chronos.databinding.FragmentCreateCircuitBinding
+import com.example.chronos.viewModels.CreateCircuitViewModel
 import com.example.chronos.viewModels.ViewModelProvider
+import com.example.chronos.views.dialogs.CircuitTitleAlreadyTakenDialog
 import com.example.chronos.views.dialogs.InvalidTitleDialog
 import com.example.chronos.views.utils.ContinuousClickHandler
 import com.example.chronos.views.utils.DurationHelper
 import com.google.android.material.snackbar.Snackbar
 
-class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
+class CreateCircuitFragment : Fragment(R.layout.fragment_create_circuit)
 {
     companion object {
-        const val TAG: String = "TrainingSettingFragment"
+        const val TAG: String = "CreateCircuitFragment"
     }
-    private var _binding: FragmentTrainingSettingBinding? = null
+    private var _binding: FragmentCreateCircuitBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: TrainingSettingViewModel by viewModels {
-        ViewModelProvider.provideTrainingSettingViewModelFactory(requireContext().applicationContext)
+    private val viewModel: CreateCircuitViewModel by viewModels {
+        ViewModelProvider.provideCreateCircuitViewModelFactory(requireContext().applicationContext)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentTrainingSettingBinding.bind(view)
+        _binding = FragmentCreateCircuitBinding.bind(view)
         observeViewModel()
         setActionOnViewModel()
+        viewModel.fetchData()
     }
 
     override fun onDestroyView()
@@ -74,6 +76,12 @@ class TrainingSettingFragment : Fragment(R.layout.fragment_training_setting)
             if (binding.textFieldTitle.editText?.text.isNullOrEmpty())
             {
                 InvalidTitleDialog().show(childFragmentManager, TAG)
+            }
+            else if (viewModel.isAlreadyCircuitWithTitle())
+            {
+                val dialog = CircuitTitleAlreadyTakenDialog()
+                dialog.onOverrideClick = { viewModel.save() }
+                dialog.show(childFragmentManager, TAG)
             }
             else
             {

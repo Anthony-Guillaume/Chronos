@@ -11,6 +11,7 @@ import com.example.chronos.R
 import com.example.chronos.databinding.FragmentEditMyCircuitBinding
 import com.example.chronos.viewModels.EditMyCircuitViewModel
 import com.example.chronos.viewModels.ViewModelProvider
+import com.example.chronos.views.dialogs.CircuitTitleAlreadyTakenDialog
 import com.example.chronos.views.dialogs.InvalidTitleDialog
 import com.example.chronos.views.utils.ContinuousClickHandler
 import com.example.chronos.views.utils.DurationHelper
@@ -73,7 +74,13 @@ class EditMyCircuitFragment : Fragment(R.layout.fragment_edit_my_circuit) {
         binding.buttonSave.setOnClickListener {
             if (binding.textFieldTitle.editText?.text.isNullOrEmpty())
             {
-                InvalidTitleDialog().show(childFragmentManager, TrainingSettingFragment.TAG)
+                InvalidTitleDialog().show(childFragmentManager, TAG)
+            }
+            else if (viewModel.isAlreadyCircuitWithTitle())
+            {
+                val dialog = CircuitTitleAlreadyTakenDialog()
+                dialog.onOverrideClick = { viewModel.save() }
+                dialog.show(childFragmentManager, CreateCircuitFragment.TAG)
             }
             else
             {

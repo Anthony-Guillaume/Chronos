@@ -47,7 +47,7 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
             if (it)
             {
                 val dialog = RedirectionToAddCircuitDialog()
-                dialog.onRedirectClick = { findNavController().navigate(R.id.action_trainingChronoFragment_to_trainingSettingFragment) }
+                dialog.onRedirectClick = { findNavController().navigate(R.id.action_trainingChronoFragment_to_createCircuitFragment) }
                 dialog.onCancelClick = { findNavController().navigate(R.id.action_trainingChronoFragment_to_homeFragment) }
                 dialog.show(childFragmentManager, TAG)
             }

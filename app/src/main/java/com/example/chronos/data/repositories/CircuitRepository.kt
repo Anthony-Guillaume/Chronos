@@ -1,6 +1,5 @@
 package com.example.chronos.data.repositories
 
-import android.util.Log
 import com.example.chronos.data.dao.CircuitDao
 import com.example.chronos.data.entities.Circuit
 
@@ -10,20 +9,21 @@ class CircuitRepository private constructor(private val dao: CircuitDao)
 
     private suspend fun getData() : MutableList<Circuit>
     {
-        Log.i("TEST", "getData $_cache")
         return _cache ?: dao.getAll().toMutableList().also { _cache = it }
     }
 
     suspend fun add(model: Circuit)
     {
         val data = getData()
-        for (m in data)
-        {
-            if (m.title == model.title)
+        val modelsToDelete: MutableList<Circuit> = mutableListOf()
+        data.forEach {
+            if (it.title == model.title)
             {
-                delete(m)
-                break
+                modelsToDelete.add(it)
             }
+        }
+        modelsToDelete.forEach {
+            delete(it)
         }
         data.add(model)
         dao.insertAll(model)

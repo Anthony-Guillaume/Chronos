@@ -16,6 +16,8 @@ class EditMyCircuitViewModel(
     private val sharedCircuitRepository: SharedCircuitRepository)
     : ViewModel()
 {
+    private var originalTitle: String? = null
+    private val _circuits: MutableLiveData<MutableList<Circuit>> = MutableLiveData()
     private val _circuit: MutableLiveData<Circuit> = MutableLiveData()
     val circuit get() = _circuit as LiveData<Circuit>
 
@@ -27,8 +29,30 @@ class EditMyCircuitViewModel(
     fun fetchData()
     {
         viewModelScope.launch {
+            _circuits.value = circuitRepository.getAll()
             _circuit.value = sharedCircuitRepository.circuitToEdit
+            originalTitle = _circuit.value?.title
         }
+    }
+
+    fun isAlreadyCircuitWithTitle() : Boolean
+    {
+        if (_circuit.value == null)
+        {
+            return false
+        }
+        val circuit: Circuit = _circuit.value!!
+        if (circuit.title == originalTitle)
+        {
+            return false
+        }
+        _circuits.value?.forEach { c ->
+            if (c.title == circuit.title)
+            {
+                return true
+            }
+        }
+        return false
     }
 
     fun save()

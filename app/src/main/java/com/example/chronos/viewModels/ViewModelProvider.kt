@@ -16,10 +16,10 @@ object ViewModelProvider
         return TrainingChronoFactory(circuitRepository, circuitHistoryRepository)
     }
 
-    fun provideTrainingSettingViewModelFactory(context: Context): TrainingSettingViewModelFactory
+    fun provideCreateCircuitViewModelFactory(context: Context): CreateCircuitViewModelFactory
     {
         val circuitRepository = CircuitRepository.getInstance(Database.getInstance(context).circuitDao)
-        return TrainingSettingViewModelFactory(circuitRepository)
+        return CreateCircuitViewModelFactory(circuitRepository)
     }
 
     fun provideEditMyCircuitViewModelFactory(context: Context): EditMyCircuitViewModelFactory

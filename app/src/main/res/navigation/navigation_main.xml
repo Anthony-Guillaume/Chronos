@@ -30,8 +30,8 @@
             android:id="@+id/action_myCircuitsFragment_to_editMyCircuitFragment"
             app:destination="@id/editMyCircuitFragment" />
         <action
-            android:id="@+id/action_myCircuitsFragment_to_trainingSettingFragment"
-            app:destination="@id/trainingSettingFragment" />
+            android:id="@+id/action_myCircuitsFragment_to_createCircuitFragment"
+            app:destination="@id/createCircuitFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingHistoryFragment"
@@ -46,12 +46,12 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment" />
         <action
-            android:id="@+id/action_trainingChronoFragment_to_trainingSettingFragment"
-            app:destination="@id/trainingSettingFragment"
+            android:id="@+id/action_trainingChronoFragment_to_createCircuitFragment"
+            app:destination="@id/createCircuitFragment"
             app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/trainingSettingFragment"
-        android:name="com.example.chronos.views.fragments.TrainingSettingFragment"
-        android:label="TrainingSettingFragment" />
+        android:id="@+id/createCircuitFragment"
+        android:name="com.example.chronos.views.fragments.CreateCircuitFragment"
+        android:label="CreateCircuitFragment" />
 </navigation>
