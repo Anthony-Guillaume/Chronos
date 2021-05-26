@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chronos</string>
+    <string name="state_done">Terminé</string>
+    <string name="state_exerciseResting">Repos</string>
+    <string name="state_setResting">Repos inter-séries</string>
+    <string name="state_workout">Exercice</string>
+    <string name="state_warmup">Echauffement</string>
+    <string name="save">Sauvegarder</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="stop">Arrêter</string>
+    <string name="start">Commencer</string>
+    <string name="back">Retour</string>
+    <string name="create_circuit">Créer mon circuit</string>
+    <string name="circuits_list_empty">Aucun circuit créé</string>
+    <string name="understood">Compris</string>
+    <string name="missing_title">Un titre doit être renseigné</string>
+    <string name="number_of_sets">Nombre de série</string>
+    <string name="number_of_rounds">Nombre d\'exercices</string>
+    <string name="undo">Annuler</string>
+    <string name="date">Date</string>
+    <string name="circuit_saved">Circuit sauvegardé</string>
+    <string name="add_circuit">Ajouter</string>
+    <string name="my_circuits">Mes circuits</string>
+    <string name="title_already_taken">Titre déjà utilisé</string>
+    <string name="circuit_title">Titre</string>
+    <string name="number_of_rounds_setting">Nombre d\'exercices   %1$d</string>
+    <string name="rest_between_sets_setting">Repos inter-séries   %1$s</string>
+    <string name="exercise_rest_setting">Repos   %1$s</string>
+    <string name="workout_setting">Exercice   %1$s</string>
+    <string name="warmup_setting">Echauffement   %1$s</string>
+    <string name="training_setting">Mes circuits</string>
+    <string name="training_history">Mon historique</string>
+    <string name="training">Entraînement</string>
+    <string name="override">Remplacer</string>
+    <string name="number_of_sets_setting">Nombre de séries   %1$d</string>
+</resources>

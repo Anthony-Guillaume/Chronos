@@ -2,7 +2,7 @@ package com.example.chronos.data.services
 
 import android.os.CountDownTimer
 
-class CircuitTimer(private val listener: CircuitTimerListener)
+class CircuitTimer
 {
     interface CircuitTimerListener
     {
@@ -13,6 +13,12 @@ class CircuitTimer(private val listener: CircuitTimerListener)
     var countDownInterval: Long = 100
     private var _timer: CountDownTimer? = null
     private val timer get() = _timer!!
+    private val listeners: MutableList<CircuitTimerListener> = mutableListOf()
+
+    fun addCircuitTimerListener(listener: CircuitTimerListener)
+    {
+        listeners.add(listener)
+    }
 
     fun start(duration: Long)
     {
@@ -32,12 +38,18 @@ class CircuitTimer(private val listener: CircuitTimerListener)
         _timer = object: CountDownTimer(duration, countDownInterval) {
             override fun onTick(millisUntilFinished: Long)
             {
-                listener.onTick(millisUntilFinished)
+                for (listener in listeners)
+                {
+                    listener.onTick(millisUntilFinished)
+                }
             }
 
             override fun onFinish()
             {
-                listener.onFinish()
+                for (listener in listeners)
+                {
+                    listener.onFinish()
+                }
             }
         }
     }

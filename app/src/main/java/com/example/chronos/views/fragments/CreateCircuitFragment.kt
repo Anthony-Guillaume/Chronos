@@ -86,8 +86,8 @@ class CreateCircuitFragment : Fragment(R.layout.fragment_create_circuit)
             else
             {
                 viewModel.save()
-                Snackbar.make(requireView(), "Circuit saved", Snackbar.LENGTH_SHORT)
-                    .setAction("Undo") {
+                Snackbar.make(requireView(), getString(R.string.circuit_saved), Snackbar.LENGTH_SHORT)
+                    .setAction(getString(R.string.undo)) {
                         viewModel.deleteLastSave()
                     }
                     .show()

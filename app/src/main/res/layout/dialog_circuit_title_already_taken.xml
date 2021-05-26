@@ -9,7 +9,7 @@
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title already taken"
+        android:text="@string/title_already_taken"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:id="@+id/button_override"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Override anyway"
+        android:text="@string/override"
         tools:layout_editor_absoluteX="117dp"
         tools:layout_editor_absoluteY="474dp" />
 
@@ -36,6 +36,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="button_close,button_override"
+        app:flow_firstHorizontalStyle="packed"
+        app:flow_firstVerticalStyle="packed"
+        app:flow_maxElementsWrap="2"
+        app:flow_wrapMode="aligned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

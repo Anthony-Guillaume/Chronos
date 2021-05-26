@@ -7,7 +7,6 @@ import com.example.chronos.data.entities.State
 import com.example.chronos.data.repositories.CircuitHistoryRepository
 import com.example.chronos.data.repositories.CircuitRepository
 import com.example.chronos.data.services.CircuitHandler
-import com.example.chronos.data.services.CircuitUtils
 import com.example.chronos.views.utils.DateHelper
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -26,12 +25,16 @@ class TrainingChronoViewModel(
     private val _canStart: MutableLiveData<Boolean> = MutableLiveData(true)
     val canStart get() = _canStart as LiveData<Boolean>
 
+    private val _canPlaySound: MutableLiveData<Boolean> = MutableLiveData(false)
+    val canPlaySound get() = _canPlaySound as LiveData<Boolean>
+
     private val _state: MutableLiveData<State> = MutableLiveData()
     val state get() = _state as LiveData<State>
 
     private lateinit var circuitSelected: Circuit
     private lateinit var circuitHandler: CircuitHandler
     private var circuitHistory: CircuitHistory? = null
+    private var historySaved: Boolean = false
 
     private val _needToCreateCircuit: MutableLiveData<Boolean> = MutableLiveData()
     val needToCreateCircuit get() = _needToCreateCircuit as LiveData<Boolean>
@@ -51,7 +54,7 @@ class TrainingChronoViewModel(
             false -> {
                 _needToCreateCircuit.value = false
                 circuitSelected = circuits.value?.first()!!
-                circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
+                circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::handleSound, ::updateHistory)
             }
         }
     }
@@ -64,17 +67,37 @@ class TrainingChronoViewModel(
         }
     }
 
+    private fun handleSound(millisUntilFinished: Long)
+    {
+        if (millisUntilFinished < 3000 && !_canPlaySound.value!!)
+        {
+            _canPlaySound.value = true
+        }
+    }
+
+    fun saveHistory()
+    {
+        if (!historySaved)
+        {
+            circuitHistory?.let {
+                historySaved = true
+                viewModelScope.launch(IO) {
+                    circuitHistoryRepository.add(it)
+                }
+            }
+        }
+    }
+
     private fun updateHistory(state: State)
     {
+        _canPlaySound.value = false
         val history: CircuitHistory = circuitHistory ?: return
         when (state)
         {
             State.SetResting -> ++history.numberOfSetsDone
             State.Done -> {
                 ++history.numberOfSetsDone
-                viewModelScope.launch(IO) {
-                    circuitHistoryRepository.add(history)
-                }
+                saveHistory()
             }
             else -> return
         }
@@ -86,6 +109,7 @@ class TrainingChronoViewModel(
         {
             circuitHandler.start()
             val circuit = circuitSelected
+            historySaved = false
             circuitHistory = CircuitHistory(circuit.title,
                 DateHelper.getCurrentDate(),
                 circuit.exercise.numberOfRounds,
@@ -99,6 +123,7 @@ class TrainingChronoViewModel(
     {
         if (_canStart.value == false)
         {
+            _canPlaySound.value = false
             circuitHandler.stop()
             _canStart.value = true
         }
@@ -108,6 +133,8 @@ class TrainingChronoViewModel(
     {
         if (_canStart.value == false)
         {
+            _canPlaySound.value = false
+            saveHistory()
             circuitHandler.reset()
             _canStart.value = true
         }
@@ -118,7 +145,7 @@ class TrainingChronoViewModel(
         circuitHandler.stop()
         circuits.value?.let {
             circuitSelected = it[index]
-            circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::updateHistory)
+            circuitHandler = CircuitHandler(circuitSelected, _state, _time, ::handleSound, ::updateHistory)
         }
     }
 }

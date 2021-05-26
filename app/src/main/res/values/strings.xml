@@ -1,26 +1,31 @@
 <resources>
     <string name="app_name">Chronos</string>
-    <string name="PREFERENCE_FILE_KEY">com.example.chronos.circuits</string>
+    <string name="PREFERENCE_FILE_KEY" translatable="false">com.example.chronos.circuits</string>
 
     <string name="training">Time to train !</string>
     <string name="training_history">My history</string>
-    <string name="training_setting">Setting</string>
+    <string name="training_setting">My circuits</string>
 
     <string name="warmup_setting">Warmup \n %1$s</string>
-    <string name="workout_setting">Workout \n %1$s</string>
-    <string name="exercise_rest_setting">Rest \n %1$s</string>
-    <string name="rest_between_sets_setting">Rest between set \n %1$s</string>
-    <string name="number_of_rounds_setting">Rounds \n %1$d</string>
-    <string name="number_of_sets_setting">Sets \n %1$d</string>
-    <string name="date_hh_mm_yyyy">%s/%s/%s</string>
+    <string name="workout_setting">Workout   %1$s</string>
+    <string name="exercise_rest_setting">Rest   %1$s</string>
+    <string name="rest_between_sets_setting">Rest between set   %1$s</string>
+    <string name="number_of_rounds_setting">Rounds   %1$d</string>
+    <string name="number_of_sets_setting">Sets   %1$d</string>
+    <string name="date_hh_mm_yyyy" translatable="false">%s/%s/%s</string>
 
-    <string name="ratio_number_of_sets_done">%1$d / %2$d</string>
+    <string name="ratio_number_of_sets_done" translatable="false">%1$d / %2$d</string>
 
-    <string name="circuit_title">Title</string>
+    <string name="circuit_title">Title</string>Title already taken
+    <string name="title_already_taken">Title already use</string>
+    <string name="override">Override</string>
     <string name="my_circuits">My circuits</string>
+    <string name="add_circuit">Add circuit</string>
+    <string name="circuit_saved">Circuit saved</string>
     <string name="date">Date</string>
-    <string name="number_of_rounds">Number of rounds</string>
-    <string name="number_of_sets">Number of sets</string>
+    <string name="undo">Undo</string>
+    <string name="number_of_rounds">Rounds</string>
+    <string name="number_of_sets">Sets</string>
     <string name="missing_title">Title must be set</string>
     <string name="understood">Understood</string>
     <string name="circuits_list_empty">No circuit set</string>

@@ -9,30 +9,33 @@ class CircuitHandler(
     private val circuit: Circuit,
     private val state: MutableLiveData<State>,
     private val time: MutableLiveData<Long>,
-    private val onFinish: ((State) -> Unit))
+    private val onTick: (Long) -> Unit,
+    private val onFinish: (State) -> Unit)
 {
     private var timeCache: Long = 0
     var paused: Boolean = false
         private set
     private val circuitStateHandler = CircuitStateHandler(circuit, state)
-    private val circuitTimer = CircuitTimer(object: CircuitTimer.CircuitTimerListener {
-        override fun onTick(millisUntilFinished: Long)
-        {
-            timeCache = millisUntilFinished
-            time.value = (millisUntilFinished)
-        }
-
-        override fun onFinish()
-        {
-            circuitStateHandler.handle()
-            start()
-            state.value?.let { onFinish.invoke(it) }
-        }
-    })
+    private val circuitTimer = CircuitTimer()
 
     init
     {
         circuitStateHandler.init()
+        circuitTimer.addCircuitTimerListener(object: CircuitTimer.CircuitTimerListener {
+            override fun onTick(millisUntilFinished: Long)
+            {
+                timeCache = millisUntilFinished
+                time.value = millisUntilFinished
+                onTick.invoke(millisUntilFinished)
+            }
+
+            override fun onFinish()
+            {
+                circuitStateHandler.handle()
+                start()
+                state.value?.let { onFinish.invoke(it) }
+            }
+        })
         time.value = circuit.warmup
     }
 

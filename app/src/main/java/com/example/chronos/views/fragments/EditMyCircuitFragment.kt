@@ -15,6 +15,7 @@ import com.example.chronos.views.dialogs.CircuitTitleAlreadyTakenDialog
 import com.example.chronos.views.dialogs.InvalidTitleDialog
 import com.example.chronos.views.utils.ContinuousClickHandler
 import com.example.chronos.views.utils.DurationHelper
+import com.google.android.material.snackbar.Snackbar
 
 class EditMyCircuitFragment : Fragment(R.layout.fragment_edit_my_circuit) {
     companion object {
@@ -85,6 +86,8 @@ class EditMyCircuitFragment : Fragment(R.layout.fragment_edit_my_circuit) {
             else
             {
                 viewModel.save()
+                Snackbar.make(requireView(), getString(R.string.circuit_saved), Snackbar.LENGTH_SHORT)
+                    .show()
             }
         }
         ContinuousClickHandler(binding.buttonWarmupMinus) { viewModel.decrementWarmupDuration() }

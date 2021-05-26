@@ -1,9 +1,14 @@
 package com.example.chronos.views.fragments
 
+import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.addCallback
+import androidx.annotation.RawRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,6 +30,10 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
     private val viewModel: TrainingChronoViewModel by viewModels {
         ViewModelProvider.provideTrainingChronoViewModelFactory(requireContext().applicationContext)
     }
+    private val mediaPlayer = MediaPlayer().apply {
+        setOnPreparedListener { start() }
+        setOnCompletionListener { reset() }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
@@ -33,16 +42,34 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
         observeViewModel()
         setActionOnViewModel()
         viewModel.fetchData()
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.saveHistory()
+            findNavController().navigate(R.id.action_trainingChronoFragment_to_homeFragment)
+        }
     }
 
     override fun onDestroyView()
     {
+        mediaPlayer.reset()
         _binding = null
         super.onDestroyView()
     }
 
     private fun observeViewModel()
     {
+        viewModel.canPlaySound.observe(viewLifecycleOwner) {
+            if (it)
+            {
+                playSound(R.raw.chrono_sound)
+            }
+            else
+            {
+                if(mediaPlayer.isPlaying)
+                {
+                    mediaPlayer.pause()
+                }
+            }
+        }
         viewModel.needToCreateCircuit.observe(viewLifecycleOwner) {
             if (it)
             {
@@ -67,12 +94,31 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
         viewModel.state.observe(viewLifecycleOwner) {
             when (it)
             {
-                State.Warmup -> binding.textViewState.text = getString(R.string.state_warmup)
-                State.Workout -> binding.textViewState.text = getString(R.string.state_workout)
-                State.ExerciseResting -> binding.textViewState.text = getString(R.string.state_exerciseResting)
-                State.SetResting -> binding.textViewState.text = getString(R.string.state_setResting)
-                State.Done -> binding.textViewState.text = getString(R.string.state_done)
-                else -> {}
+                State.Idle -> {
+                    binding.textViewState.text = getString(R.string.state_warmup)
+                    requireView().setBackgroundColor(Color.WHITE)
+                }
+                State.Warmup -> {
+                    binding.textViewState.text = getString(R.string.state_warmup)
+                    requireView().setBackgroundColor(Color.YELLOW)
+                }
+                State.Workout -> {
+                    binding.textViewState.text = getString(R.string.state_workout)
+                    requireView().setBackgroundColor(Color.RED)
+                }
+                State.ExerciseResting -> {
+                    binding.textViewState.text = getString(R.string.state_exerciseResting)
+                    requireView().setBackgroundColor(Color.GREEN)
+                }
+                State.SetResting -> {
+                    binding.textViewState.text = getString(R.string.state_setResting)
+                    requireView().setBackgroundColor(Color.GREEN)
+                }
+                State.Done -> {
+                    binding.textViewState.text = getString(R.string.state_done)
+                    requireView().setBackgroundColor(Color.WHITE)
+                }
+                else -> requireView().setBackgroundColor(Color.WHITE)
             }
         }
     }
@@ -95,6 +141,17 @@ class TrainingChronoFragment : Fragment(R.layout.fragment_chrono_training)
             {
                 parent?.let { viewModel.updateCircuitSelected(position) }
             }
+        }
+    }
+
+    // TODO Créer un singleton Audio et l'injecter aux VM
+    private fun playSound(@RawRes rawResId: Int)
+    {
+        val assetFileDescriptor = requireActivity().resources.openRawResourceFd(rawResId) ?: return
+        mediaPlayer.run {
+            reset()
+            setDataSource(assetFileDescriptor.fileDescriptor, assetFileDescriptor.startOffset, assetFileDescriptor.declaredLength)
+            prepareAsync()
         }
     }
 }
